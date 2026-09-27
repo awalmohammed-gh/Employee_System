@@ -1,0 +1,24 @@
+﻿/* Admin-only presentation rules; employee pages and printed documents are unaffected. */
+.admin-workspace .admin-page { min-width: 0; }
+.admin-workspace .admin-toolbar > p { max-width: 38rem; line-height: 1.6; }
+.admin-workspace .admin-toolbar > div { flex-wrap: wrap; }
+.admin-workspace table { border-collapse: separate; border-spacing: 0; }
+.admin-workspace table th { font-size: 11px; letter-spacing: .045em; padding-top: 14px; padding-bottom: 14px; }
+.admin-workspace table td { padding-top: 15px; padding-bottom: 15px; line-height: 1.5; }
+.admin-workspace table tbody tr { transition: background-color 150ms ease; }
+.admin-workspace input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]):not([type="color"]),
+.admin-workspace select { min-height: 44px; }
+.admin-workspace textarea { line-height: 1.6; }
+.admin-workspace button:focus-visible,
+.admin-workspace a:focus-visible { outline: 2px solid #ff5500; outline-offset: 3px; }
+.admin-workspace h2, .admin-workspace h3 { text-wrap: balance; }
+.admin-workspace [role="tablist"] { max-width: 100%; }
+@media (max-width: 639px) {
+  .admin-workspace .admin-toolbar { padding: 16px; }
+  .admin-workspace .admin-toolbar > div { width: 100%; gap: 8px; }
+  .admin-workspace input:not([type="checkbox"]):not([type="radio"]),
+  .admin-workspace select, .admin-workspace textarea { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .admin-workspace button, .admin-workspace a, .admin-workspace table tbody tr { transition: none; }
+}

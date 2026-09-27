@@ -1,0 +1,9 @@
+{
+  "name": "WorkPulse",
+  "description": "WorkPulse — Comprehensive employee and workforce management system with role-based administration, automated shift attendance, leave tracking, and seamless payroll.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
+

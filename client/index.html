@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/eyenit_logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>WorkPulse — Workforce & Employee Management System</title>
+    <meta name="description" content="WorkPulse — Comprehensive employee and workforce management system with role-based administration, automated shift attendance, leave tracking, and seamless payroll." />
+    <meta property="og:title" content="WorkPulse — Workforce & Employee Management System" />
+    <meta property="og:description" content="WorkPulse — Comprehensive employee and workforce management system with role-based administration, automated shift attendance, leave tracking, and seamless payroll." />
+    <script>
+      (function () {
+        try {
+          var preference =
+            localStorage.getItem("app_theme") ||
+            localStorage.getItem("theme_preference") ||
+            localStorage.getItem("eyenit_theme") ||
+            localStorage.getItem("theme") ||
+            "system";
+          var systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var isDark = preference === "dark" || (preference === "system" && systemDark);
+          if (isDark) {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

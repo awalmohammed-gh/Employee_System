@@ -1,0 +1,11 @@
+﻿.auth-panel { --auth-accent: #0B1E48; }
+.auth-panel--employee { --auth-accent: #ff5500; }
+.auth-panel form { gap: 1.25rem; }
+.auth-panel input:not([type="checkbox"]) { min-height: 48px; font-size: 16px; }
+.auth-panel input:focus { border-color: var(--auth-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--auth-accent) 12%, transparent); }
+.auth-panel input[type="checkbox"] { accent-color: var(--auth-accent); }
+.auth-panel button[type="submit"] { min-height: 48px; box-shadow: none; transition: background-color 150ms ease; }
+.auth-panel button:focus-visible { outline: 2px solid var(--auth-accent); outline-offset: 3px; }
+.auth-panel button[id^="btn-toggle"] { min-width: 44px; justify-content: center; padding-right: 0; }
+.auth-panel button[id^="link-switch"] { flex-wrap: wrap; justify-content: center; line-height: 1.7; }
+@media (prefers-reduced-motion: reduce) { .auth-panel *, .auth-panel *::before, .auth-panel *::after { transition-duration: 0ms !important; animation: none !important; } }

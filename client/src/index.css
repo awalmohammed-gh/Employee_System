@@ -1,0 +1,262 @@
+@import url(https://fonts.googleapis.com/css?family=Outfit:100,200,300,regular,500,600,700,800,900);
+
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+* {
+  font-family: "Outfit", sans-serif;
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8fafc;
+  color: #0f172a;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Anti-flicker zero transition class applied dynamically during theme switching */
+body.transition-none,
+body.transition-none *,
+body.transition-none *::before,
+body.transition-none *::after,
+html.transition-none,
+html.transition-none *,
+html.transition-none *::before,
+html.transition-none *::after {
+  transition: none !important;
+  animation-duration: 0s !important;
+}
+
+html.dark,
+body.dark,
+.dark body {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+/* Touch-optimized horizontal scrolling for responsive data tables */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+/* Safe area insets for mobile notched displays */
+.safe-bottom,
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 0.5rem);
+}
+.pt-safe {
+  padding-top: max(env(safe-area-inset-top, 0px), 0.5rem);
+}
+
+/* iOS Safari auto-zoom prevention for inputs below 16px */
+@media screen and (max-width: 768px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Scrollbars in the company colour (navy #002185; a lighter tint of it in dark mode so it stays visible) */
+:root {
+  --scrollbar-thumb: #002185;
+  --scrollbar-thumb-hover: #001760;
+  --scrollbar-track: #f1f5f9;
+}
+.dark {
+  --scrollbar-thumb: #3355c8;
+  --scrollbar-thumb-hover: #4c6ee0;
+  --scrollbar-track: #1e293b;
+}
+* {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera, and Firefox while keeping full scrollability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    height: 0px;
+  }
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
+
+/* Smooth drawer backdrop animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Print-ready profile, payslip, and attendance document styles */
+@page {
+  size: A4 portrait;
+  margin: 10mm 12mm 10mm 12mm;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* Reset any modal backdrops, overlays, or dark containers */
+  .fixed,
+  .backdrop-blur-sm,
+  .backdrop-blur-xs,
+  .bg-black\/60,
+  .bg-black\/70,
+  .bg-slate-950\/60,
+  .bg-slate-950\/70 {
+    position: static !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Hide headers, sidebars, navigation, search filters, interactive buttons */
+  nav,
+  header,
+  aside,
+  #sidebar,
+  #mobile-sidebar,
+  .no-print,
+  .print-hidden,
+  button:not(.print-include),
+  input,
+  select {
+    display: none !important;
+  }
+
+  /* Display elements intended exclusively for print */
+  .print-only,
+  .print-visible {
+    display: block !important;
+  }
+
+  /* Optimize print container to take full paper width */
+  .print-container {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+  }
+
+  /* Document Cards in Print Mode */
+  .print-card,
+  #corporate-payslip-canvas,
+  #corporate-attendance-canvas,
+  #print-employee-profile-card {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  /* Prevent awkward page breaks inside rows or tables */
+  .print-card,
+  table,
+  tr,
+  td,
+  th,
+  .print-break-inside-avoid {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tfoot {
+    display: table-footer-group !important;
+  }
+}
+

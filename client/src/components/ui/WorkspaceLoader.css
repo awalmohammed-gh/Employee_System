@@ -1,0 +1,39 @@
+.company-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  color: var(--brand-primary, #0B1E48);
+}
+.company-loader--page {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  padding: 1.5rem;
+  background: #f8fafc;
+}
+.dark .company-loader--page { background: #070b14; }
+.company-loader--section { width: 100%; min-height: 200px; padding: 2rem 1rem; }
+/* Page loader inside the app shell: fills the page area below the top bar, never the whole viewport */
+.company-loader--content { width: 100%; min-height: calc(100dvh - 4rem - 6rem); padding: 2rem 1rem; }
+@media (min-width: 768px) { .company-loader--content { min-height: calc(100dvh - 4rem - 2.5rem); } }
+.company-loader--compact { width: 100%; min-height: 96px; padding: 1rem; gap: .75rem; }
+.company-loader__mark { position: relative; display: inline-flex; width: 88px; height: 88px; flex-shrink: 0; align-items: center; justify-content: center; }
+.company-loader__orbit { position: absolute; inset: 0; border: 2px solid color-mix(in srgb, var(--brand-primary, #0B1E48) 18%, transparent); border-top-color: var(--brand-primary, #0B1E48); border-radius: 50%; animation: company-loader-orbit 2s linear infinite; }
+.company-loader__logo { display: flex; align-items: center; justify-content: center; width: 76%; height: 76%; border-radius: 50%; background: white; overflow: hidden; padding: 8%; }
+.company-loader__logo img { width: 100%; height: 100%; object-fit: contain; }
+.company-loader__initials { font-size: 1.1rem; font-weight: 700; }
+.company-loader__copy { display: flex; flex-direction: column; gap: .4rem; max-width: 24rem; }
+.company-loader__title { font-size: .875rem; font-weight: 600; color: #334155; }
+.company-loader__message { font-size: .75rem; color: #64748b; }
+.dark .company-loader__title { color: #e2e8f0; }
+.dark .company-loader__message { color: #94a3b8; }
+.company-loader--compact .company-loader__mark { width: 48px; height: 48px; }
+.company-loader--inline { display: inline-flex; vertical-align: middle; flex-shrink: 0; padding: 0; gap: 0; width: 24px; height: 24px; }
+.company-loader--inline .company-loader__mark { width: 100%; height: 100%; min-width: 20px; min-height: 20px; }
+.company-loader--inline .company-loader__initials { font-size: .5rem; }
+@keyframes company-loader-orbit { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .company-loader__orbit { animation: none; } }
+@media (max-width: 640px) { .company-loader--page .company-loader__mark { width: 72px; height: 72px; } }
