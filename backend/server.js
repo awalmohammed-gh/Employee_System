@@ -313,7 +313,7 @@ startBackendServer();
 
 // Graceful Shutdown & Process Signal Handling to prevent hanging socket connections
 let isShuttingDown = false;
-const gracefulShutdown = (signal) => {
+const gracefulShutdown = (signal, exitCode = 0) => {
   if (isShuttingDown) return;
   isShuttingDown = true;
   console.log(`\n[Backend] Received ${signal}. Initiating graceful shutdown...`);
@@ -337,7 +337,7 @@ const gracefulShutdown = (signal) => {
     } catch (err) {
       console.warn("[Backend] Error closing MongoDB connection:", err.message);
     }
-    process.exit(0);
+    process.exit(exitCode);
   });
 
   // Force shutdown if connections do not close within 5 seconds
@@ -348,6 +348,14 @@ const gracefulShutdown = (signal) => {
 };
 
 if (isMainModule) {
+  server.on("error", (error) => {
+    if (error.code === "EADDRINUSE") {
+      console.error(`[Backend] Port ${port} is already in use. Stop the other server or set PORT to an available port. Standalone Vite should run on port 5173.`);
+    } else {
+      console.error("[Backend] HTTP server error:", error.message);
+    }
+    gracefulShutdown("HTTP server error", 1);
+  });
   process.on("SIGTERM", () => gracefulShutdown("SIGTERM"));
   process.on("SIGINT", () => gracefulShutdown("SIGINT"));
 }
